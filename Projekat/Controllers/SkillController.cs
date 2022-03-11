@@ -17,18 +17,20 @@ namespace Projekat.Controllers
         private readonly IConfiguration _configuration;
         public SkillController(IConfiguration configuration)
         {
-            _configuration = configuration;
+             _configuration = configuration;
+
         }
 
         [HttpGet]
         public JsonResult Get()
         {
+
             MongoClient mongoClient = new MongoClient(_configuration.GetConnectionString("CandidateConn"));
             var dbList = mongoClient.GetDatabase("JobCandidateDatabase").GetCollection<Skill>("Skill").AsQueryable();
 
             return new JsonResult(dbList);
         }
-
+        
         [HttpPost]
         public JsonResult Post(string name)
         {
