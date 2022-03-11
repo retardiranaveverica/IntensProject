@@ -192,9 +192,12 @@ namespace Projekat.Controllers
 
             foreach(var obj in can)
             {
-                if (obj.Id != id)
-                    return new JsonResult("Not found candidate with given Id");
+                if (obj.Id == id)
+                    candidate = obj;
             }
+
+            if(candidate == null)
+                return new JsonResult("Not found candidate with given Id");
 
             var filter = Builders<Candidate>.Filter.Eq("Id", id);
             mongoClient.GetDatabase("JobCandidateDatabase").GetCollection<Candidate>("Candidate").DeleteOneAsync(filter);

@@ -15,7 +15,6 @@ namespace Projekat.Controllers
     public class SkillController : ControllerBase
     {
         private readonly IConfiguration _configuration;
-
         public SkillController(IConfiguration configuration)
         {
             _configuration = configuration;
